@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.PlaylistAdd
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.PlaylistAdd
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material.icons.filled.ThumbUp
@@ -49,7 +49,7 @@ fun ActionButtons() {
             text = "Download"
         )
         ActionButton(
-            icon = Icons.Default.PlaylistAdd,
+            icon = Icons.AutoMirrored.Filled.PlaylistAdd,
             text = "Save"
         )
     }

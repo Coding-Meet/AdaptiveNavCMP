@@ -16,8 +16,8 @@ import com.example.adaptive_nav_cmp.ui.navigation.AppNavHost
 import com.example.adaptive_nav_cmp.ui.navigation.Route
 import com.example.adaptive_nav_cmp.ui.navigation.isRouteInHierarchy
 import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.CustomNavigationSuiteScaffoldLayout
+import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.MainContentBox
 import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.NavItem
-import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.SystemNavigationSuiteScaffold
 import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.customNavigationSuiteType
 import com.example.adaptive_nav_cmp.ui.theme.YoutubeTheme
 import com.example.adaptive_nav_cmp.utils.calculateWindowSizeClass
@@ -25,7 +25,7 @@ import com.example.adaptive_nav_cmp.utils.calculateWindowSizeClass
 @Composable
 @Preview
 fun App() {
-    YoutubeTheme(false) {
+    YoutubeTheme {
         val navController = rememberNavController()
         val navigationSuiteState = rememberNavigationSuiteScaffoldState()
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -68,20 +68,57 @@ fun App() {
          */
         val windowAdaptiveInfo = currentWindowAdaptiveInfo()
 
+        /**
+         * - notes: If use custom navigationSuiteType with inbuilt NavigationSuiteScaffold return only [NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo]
+         * return [NavigationSuiteType.NavigationBar] or [NavigationSuiteType.NavigationRail]
+         */
+        val inbuiltLayoutType = NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(
+            adaptiveInfo = windowAdaptiveInfo
+        )
 
         /**
          * Check [NavigationSuiteScaffoldDefaults.navigationSuiteType] Method:
          * - On Mobile: Usually returns [NavigationSuiteType.ShortNavigationBarCompact] (Bottom Bar).
          * - On Tablets/Desktop: Usually returns [NavigationSuiteType.ShortNavigationBarMedium] or [NavigationSuiteType.WideNavigationRailCollapsed].
-         */
+         *
+         * - notes: If use custom navigationSuiteType with inbuilt NavigationSuiteScaffold return only [NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo]
+         * return [NavigationSuiteType.NavigationBar] or [NavigationSuiteType.NavigationRail]
+         *  padding issue occur if return [NavigationSuiteType.ShortNavigationBarCompact] [NavigationSuiteType.ShortNavigationBarMedium] or [NavigationSuiteType.WideNavigationRailCollapsed].
+         *
+         * - notes: if use custom navigationSuiteType with custom NavigationSuiteScaffold so we need provide calculate padding for main content use this function [MainContentBox]
+         * */
         val layoutType = NavigationSuiteScaffoldDefaults.navigationSuiteType(
             adaptiveInfo = windowAdaptiveInfo
         )
 
+        // Example 1
+//        SystemNavigationSuiteScaffold(
+//            navigationSuiteState = navigationSuiteState,
+//            layoutType = inbuiltLayoutType,
+//            currentNavigationItem = currentNavigationItem,
+//            onNavigationItemClick = { navItem ->
+//                navController.navigate(navItem.route) {
+//                    popUpTo(Route.HomeRoute) {
+//                        saveState = true
+//                    }
+//                    launchSingleTop = true
+//                    restoreState = true
+//                }
+//            },
+//            content = {
+//                AppNavHost(navController = navController)
+//            }
+//        )
+
+
         val windowSizeClass = calculateWindowSizeClass()
 
+        /**
+         * - notes: if use custom navigationSuiteType with custom NavigationSuiteScaffold so we need provide calculate padding for main content use this function [MainContentBox]
+         */
         val customLayoutType = customNavigationSuiteType(windowSizeClass)
 
+        // Example 2
         CustomNavigationSuiteScaffoldLayout(
             navigationSuiteState = navigationSuiteState,
             layoutType = customLayoutType,
@@ -99,24 +136,5 @@ fun App() {
                 AppNavHost(navController = navController)
             }
         )
-
-        SystemNavigationSuiteScaffold(
-            navigationSuiteState = navigationSuiteState,
-            layoutType = customLayoutType,
-            currentNavigationItem = currentNavigationItem,
-            onNavigationItemClick = { navItem ->
-                navController.navigate(navItem.route) {
-                    popUpTo(Route.HomeRoute) {
-                        saveState = true
-                    }
-                    launchSingleTop = true
-                    restoreState = true
-                }
-            },
-            content = {
-                AppNavHost(navController = navController)
-            }
-        )
-
     }
 }
