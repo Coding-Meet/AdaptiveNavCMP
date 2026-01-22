@@ -9,7 +9,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.adaptive_nav_cmp.ui.navigation.AppNavHost
@@ -18,12 +17,12 @@ import com.example.adaptive_nav_cmp.ui.navigation.isRouteInHierarchy
 import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.CustomNavigationSuiteScaffoldLayout
 import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.MainContentBox
 import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.NavItem
+import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.SystemNavigationSuiteScaffold
 import com.example.adaptive_nav_cmp.ui.navigation.nav_bar.customNavigationSuiteType
 import com.example.adaptive_nav_cmp.ui.theme.YoutubeTheme
 import com.example.adaptive_nav_cmp.utils.calculateWindowSizeClass
 
 @Composable
-@Preview
 fun App() {
     YoutubeTheme {
         val navController = rememberNavController()

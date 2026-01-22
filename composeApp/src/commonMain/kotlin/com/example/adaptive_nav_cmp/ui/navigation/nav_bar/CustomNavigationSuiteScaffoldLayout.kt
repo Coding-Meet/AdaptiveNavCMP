@@ -1,7 +1,9 @@
 package com.example.adaptive_nav_cmp.ui.navigation.nav_bar
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuOpen
@@ -13,6 +15,7 @@ import androidx.compose.material3.NavigationItemIconPosition
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.PermanentDrawerSheet
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ShortNavigationBar
 import androidx.compose.material3.ShortNavigationBarItem
 import androidx.compose.material3.Text
@@ -24,12 +27,19 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaul
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldLayout
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldState
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
+import androidx.compose.material3.adaptive.navigationsuite.rememberNavigationSuiteScaffoldState
 import androidx.compose.material3.rememberWideNavigationRailState
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.dp
+import com.example.adaptive_nav_cmp.ui.theme.YoutubeTheme
+import com.example.adaptive_nav_cmp.utils.AllAdaptivePreviews
 import kotlinx.coroutines.launch
 
 @Composable
@@ -195,4 +205,33 @@ fun CustomNavigationSuiteScaffoldLayout(
             )
         }
     )
+}
+
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+@AllAdaptivePreviews
+@Composable
+fun CustomNavigationPreview() {
+    YoutubeTheme {
+        val windowInfo = LocalWindowInfo.current
+        val size = windowInfo.containerDpSize
+        val windowSizeClass = WindowSizeClass.calculateFromSize(
+            size
+        )
+        val layoutType = customNavigationSuiteType(windowSizeClass)
+        CustomNavigationSuiteScaffoldLayout(
+            navigationSuiteState = rememberNavigationSuiteScaffoldState(),
+            layoutType = layoutType,
+            currentNavigationItem = NavItem.HOME,
+            onNavigationItemClick = {}
+        ) {
+            Scaffold {
+                Box(
+                    modifier = Modifier.fillMaxSize().padding(it),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("Custom Navigation Preview")
+                }
+            }
+        }
+    }
 }
