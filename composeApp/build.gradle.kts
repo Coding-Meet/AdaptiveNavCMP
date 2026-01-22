@@ -32,28 +32,28 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
-            implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.10.0")
+            implementation(libs.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation("org.jetbrains.compose.runtime:runtime:1.10.0")
-            implementation("org.jetbrains.compose.foundation:foundation:1.10.0")
-            implementation("org.jetbrains.compose.material3:material3:1.9.0")
-            implementation("org.jetbrains.compose.material3:material3-adaptive-navigation-suite:1.9.0")
-            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+            implementation(libs.runtime)
+            implementation(libs.foundation)
 
+            // Material
+            implementation(libs.material.icons.extended)
+            implementation(libs.material3.adaptive.navigation.suite)
+            implementation(libs.material3)
             implementation(libs.material3.adaptive)
             implementation(libs.material3.window.size.class1)
-            implementation(libs.material3.adaptive.layout)
-            implementation(libs.material3.adaptive.navigation)
-            implementation(libs.androidx.navigation.compose)
 
+            // Navigation & Serialization
+            implementation(libs.androidx.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
 
 
-            implementation("org.jetbrains.compose.ui:ui:1.10.0")
-            implementation("org.jetbrains.compose.components:components-resources:1.10.0")
-            implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.10.0")
+            implementation(libs.ui)
+            implementation(libs.components.resources)
+            implementation(libs.ui.tooling.preview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
         }
@@ -95,7 +95,7 @@ android {
 }
 
 dependencies {
-    debugImplementation("org.jetbrains.compose.ui:ui-tooling:1.10.0")
+    debugImplementation(libs.ui.tooling)
 }
 
 compose.desktop {
