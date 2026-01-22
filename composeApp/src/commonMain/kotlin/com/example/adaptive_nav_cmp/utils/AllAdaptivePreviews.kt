@@ -9,13 +9,15 @@ import androidx.compose.ui.tooling.preview.Preview
     name = "Phone Light",
     device = Devices.PIXEL_8,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_NO,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 @Preview(
     name = "Phone Dark",
     device = Devices.PIXEL_8,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_YES,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 annotation class PhonePreview
 
@@ -23,13 +25,15 @@ annotation class PhonePreview
     name = "Foldable Light",
     device = Devices.PIXEL_9_PRO_FOLD,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_NO,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 @Preview(
     name = "Foldable Dark",
     device = Devices.PIXEL_9_PRO_FOLD,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_YES,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 annotation class FoldablePreview
 
@@ -38,13 +42,15 @@ annotation class FoldablePreview
     name = "Tablet Light",
     device = Devices.PIXEL_TABLET,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_NO,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 @Preview(
     name = "Tablet Dark",
     device = Devices.PIXEL_TABLET,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_YES,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 annotation class TabletPreview
 
@@ -53,13 +59,15 @@ annotation class TabletPreview
     name = "Desktop Light",
     device = Devices.DESKTOP,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_NO,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 @Preview(
     name = "Desktop Dark",
     device = Devices.DESKTOP,
     uiMode = AndroidUiModes.UI_MODE_NIGHT_YES,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 annotation class DesktopPreview
 
@@ -67,7 +75,8 @@ annotation class DesktopPreview
 @Preview(
     name = "TV 1080p",
     device = Devices.TV_1080p,
-    showBackground = true
+    showBackground = true,
+    showSystemUi = true
 )
 annotation class TvPreview
 
